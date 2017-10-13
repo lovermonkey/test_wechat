@@ -1,0 +1,20 @@
+<?php
+
+$signature = empty($_REQUEST['signature']) ? '' : $_REQUEST['signature'];
+$timestamp = empty($_REQUEST['timestamp']) ? '' : $_REQUEST['timestamp'];
+$nonce = empty($_REQUEST['nonce']) ? '' : $_REQUEST['nonce'];
+$echostr = empty($_REQUEST['echostr']) ? '' : $_REQUEST['echostr'];
+
+if($signature && $timestamp && $nonce && $echostr){
+    $token = "bowen";
+    $array = array($token, $timestamp, $nonce);
+    sort($array, SORT_STRING);
+
+    $list = join('', $array);
+
+    $hashcode = sha1($list);
+
+    if($hashcode == $signature){
+        echo $echostr;
+    }
+}

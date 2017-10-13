@@ -1,0 +1,29 @@
+<?php
+    /**
+     * 实现请求微信服务器
+     *
+     */
+
+    include 'xml_tpl.php';
+    include  'echomsg.php';
+
+    $data = $GLOBALS['HTTP_RAW_POST_DATA'];
+    if($data){
+        libxml_disable_entity_loader(true);
+        $xml_obj = simplexml_load_file($data, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $from_user_name = $xml_obj -> ToUserName;
+        $to_user_name = $xml_obj -> FromUserName;
+        $msgType = $xml_obj -> MsgType;
+
+        $time = time();
+
+        switch ($msg_type){
+            case 'text':
+                $content = $xml_obj -> Content;
+                echo echoText($to_user_name,$from_user_name,$time,$content);
+                break;
+            default:
+                echo '';
+                break;
+        }
+    }

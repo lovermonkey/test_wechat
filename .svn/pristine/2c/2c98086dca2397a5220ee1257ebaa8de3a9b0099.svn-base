@@ -1,0 +1,15 @@
+<?php
+/**
+ * 微信公众号测试号接收信息的模板
+ *
+ */
+$xml_tpl = array(
+    //接收文本信息
+    'test' => "<xml>
+                 <ToUserName><![CDATA[%s]]></ToUserName>
+                 <FromUserName><![CDATA[%s]]></FromUserName>
+                 <CreateTime>%s</CreateTime>
+                 <MsgType><![CDATA[text]]></MsgType>
+                 <Content><![CDATA[%s]]></Content>
+                </xml>",
+);
